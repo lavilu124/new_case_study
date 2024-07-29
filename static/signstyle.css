@@ -2,6 +2,23 @@
 
 /* BASIC */
 
+.custom-select {
+    min-width: 350px;
+}
+
+.custom-select select {
+    appearance: none;
+    width: 80%;
+    height: 1%;
+    font-size: 1.0rem;
+    padding: 0.675em 6em 0.675em 1em;
+    background-color: #d8f7ce;
+    border: 1px solid #d8f7ce;
+    border-radius: 0.25rem;
+    color: #7e7d7d;
+    cursor: pointer;
+}
+
 html {
     background-color: #94ab6f;
 }
