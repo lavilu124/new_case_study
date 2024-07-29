@@ -96,7 +96,7 @@ def calander():
     
     # For GET request, render the page with sample events
     
-    return render_template("calander.html", events=db.child("calander_events").get().val())
+    return render_template("calander.html", events=json.dumps(list(db.child("calander_events").get().val().values()))) #db.child("calander_events").get().val() #{"title": "test", "start": "2024-07-01", "start": "2024-07-02"}
     
     
 
