@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css' rel='stylesheet' />
+        <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js'></script>
+        <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/locales-all.min.js'></script>
+        <style>
+            body {
+                font-family: 'Quicksand', sans-serif; /* Apply Quicksand font */
+                background-color: #ffffff; /* White background */
+                color: #333;
+                text-align: center;
+                margin: 0;
+                padding: 0;
+            }
+            h1 {
+                color: #0277bd;
+                margin: 20px 0;
+            }
+            p {
+                color: #555;
+                margin-bottom: 20px;
+            }
+            #calendar {
+                margin: 20px auto;
+                max-width: 80%;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                background-color: #fff;
+            }
+            button {
+                background-color: #0277bd; /* Dark Blue */
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                font-size: 16px;
+                cursor: pointer;
+                border-radius: 5px;
+                margin-top: 20px;
+            }
+            button:hover {
+                background-color: #01579b; /* Darker Blue */
+            }
+        </style>
+
+        <title>Tuesdays for Trash</title>
+
+        <head>
+            <link rel="shortcut icon" type="image/x-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAQlBMVEVHcEyd0ZKd0ZKd0ZKd0ZKd0ZKd0ZKd0ZKd0ZKd0ZKd0ZKh1pVMgVg5b0yUyYxfk2UARSwLTTJonGsfWzyGu4J0qXRJWq/6AAAAC3RSTlMAT5bP9P8cp5DgKp0v+A4AAAEUSURBVHgBhZMFAsMgDEXrhuWX7v5XXWAkMH9bW+ThoWvoh3Ga52kc+u4Dyzo3rMtr/Ta/sD033+c39qaTY5o/MB3aXutNRg3pY9c66xir1t7MzwfGEhiyKe11pktuH4hBIaVD7iMNsmbhRIzgH78f/zMLKws6v2dKMe9vSV3xiasU990gAgEEgUQYurEK0QLOATZWYexkkzzBGdDtRjAO5GWzurkK0cQk8KcK839hkhQBIgA06xCjJAHMLgkuJwujLjM18zYJ1qfOdJm9CLEVoggcno1whSSEqxHksFhwLJxJOFlwLMhhLSpAj1KFpQa0sSRnwQlr2tAuIW2dYktgPwetadCg/R/2/y/O/6v3//L+vv53ASIebLADWnAAAAAASUVORK5CYII="
+            />
+        </head>
+
+
+        <!-- bootstrap core css -->
+        <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css" />
+
+        <!-- ../static/fonts style -->
+        <link href="https://../static/fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+        <!--owl slider stylesheet -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+        <!-- font awesome style -->
+        <link href="../static/css/font-awesome.min.css" rel="stylesheet" />
+        <!-- nice select -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha256-mLBIhmBvigTFWPSCtvdu6a76T+3Xyt+K571hupeFLg4=" crossorigin="anonymous" />
+        <!-- datepicker -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css">
+        <!-- Custom styles for this template -->
+        <link href="../static/css/style.css" rel="stylesheet" />
+        <!-- responsive style -->
+        <link href="../static/css/responsive.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Events near you Calendar</h1>
+        <p>pick events and sign up to them</p>
+        <div id='calendar'></div>
+        <p id="events" hidden> {{events.values()}} </p>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var calendarEl = document.getElementById('calendar');
+                var get_events = JSON.parse(document.getElementById("events").innerHTML.replace(/'/g, '"'));
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth',
+                    locale: 'en',
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                    },
+                    selectable: true,
+                    editable: true,
+                    dateClick: function(info) {
+                        var dateStr = prompt('Enter a title for your event:');
+                        if (dateStr) {
+                            var cur_event = {
+                                title: dateStr,
+                                start: info.dateStr,
+                                allDay: true
+                            };
+                            calendar.addEvent(cur_event);
+
+                            fetch('/calander', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    title: dateStr,
+                                    start: info.dateStr,
+                                    allDay: true
+                                })
+                            })
+                        }
+                    },
+                    select: function(info) {
+                        var title = prompt('Enter a title for your event:');
+                        if (title) {
+                            var cur_event = {
+                                title: title,
+                                start: info.startStr,
+                                end: info.endStr
+                            };
+                            calendar.addEvent(cur_event);
+
+                            fetch('/calander', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(cur_event)
+                            })
+                        }
+                    },
+                    events: (document.getElementById("events").innerHTML != "") ? get_events.map(event => ({
+                        title: event.title,
+                        start: event.start,
+                        end: event.end || null
+                    })) : []
+                });
+                calendar.render();
+            });
+        </script>
+        </script>
+    </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Add icon library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="{{url_for('static', filename='signstyle.css')}}">
+
+    </head>
+
+    <body>
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+              <!-- Tabs Titles -->
+              <h2 class="active"> Sign In </h2>
+          
+              <!-- Icon -->
+              <div class="fadeIn first">
+                <img src="https://i.fbcd.co/products/original/5fa383ce5eb20c14d119f50755ad611c2ac183fd968ad1369ddee607e2890343.jpg" id="icon" alt="User Icon" />
+              </div>
+          
+              <!-- <a href="/signin">Login</a> Form -->
+              <form action="/signin" method="POST">
+                <input type="text" id="login" class="fadeIn second" name="email" placeholder="email" required>
+                <input type="text" id="password" class="fadeIn third" name="password" placeholder="password" required>
+                <input type="submit" class="fadeIn fourth" value="Log In">
+              </form>
+          
+              <!-- links -->
+              <div id="formFooter">
+                <a class="underlineHover" href="/">go to home</a>
+                <a class="underlineHover" href="/signup">don't have an account? go create one</a>
+                <p>{{error}}</p>
+              </div>
+
+            </div>
+        </div>
+    </body>
+
+</html>
