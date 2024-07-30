@@ -15,7 +15,7 @@
                 padding: 0;
             }
             h1 {
-                color: #0277bd;
+                color: #94ab6f;
                 margin: 20px 0;
             }
             p {
@@ -30,7 +30,7 @@
                 background-color: #fff;
             }
             button {
-                background-color: #0277bd; /* Dark Blue */
+                background-color: #94ab6f; /* Dark Blue */
                 color: white;
                 border: none;
                 padding: 10px 20px;
@@ -152,8 +152,8 @@
         </div>
 
 
-        <h1>Events near you Calendar</h1>
-        <p>pick events and sign up to them</p>
+        <h1 style="color: #94ab6f;"><center>Events near you</center></h1>
+        <p><center>pick events and sign up to them</center></p>
         {% if signedin%}
             <div id='calendar'></div>
             <p id="events" hidden> {{ events | safe }} </p>
