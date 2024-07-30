@@ -49,7 +49,7 @@ def get_user_data(data):
 
 def get_calander():
     if db.child("calander_events").child(get_user_data("zone")).get().val() is not None:
-     return json.dumps(list(db.child("calander_events").child(get_user_data("zone")).get().val().values()))
+        return json.dumps(list(db.child("calander_events").child(get_user_data("zone")).get().val().values()))
     
     return []
 
@@ -96,9 +96,11 @@ def profile():
 @app.route("/calander", methods=['GET', 'POST'])
 def calander():
     #if post add new event to calander
+    zone = get_user_data("zone")
     if request.method == "POST":
         event_data = request.get_json()
-        db.child("calander_events").child(get_user_data("zone")).push(event_data)
+        db.child("calander_events").child(zone).push(event_data)
+    
     
     #render the page
     return render_template("calander.html", events=get_calander(),
