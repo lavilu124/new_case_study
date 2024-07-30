@@ -92,6 +92,10 @@ def profile():
                            signedin=db.child("users").child(login_session["user"]["localId"]).get().val() is not None,
                            username=get_user_data("username"))
 
+@app.route("/meme_of_the_day")
+def meme_of_the_day():
+    return render_template("MemeOfTheDay.html")
+
 #calander page
 @app.route("/calander", methods=['GET', 'POST'])
 def calander():
