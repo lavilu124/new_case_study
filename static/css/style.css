@@ -38,6 +38,11 @@ input[type=reset]:active {
     transform: scale(0.95);
 }
 
+.meme {
+    width: 50%;
+    height: 40%;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     color: #0c0c0c;

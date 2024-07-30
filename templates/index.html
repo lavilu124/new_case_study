@@ -73,7 +73,7 @@
                     <a class="nav-link" href="about"> About</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="jobs">jobs</a>
+                    <a class="nav-link" href="ranks">ranks</a>
                   </li>
                   <li class="nav-item">
                     <a  class="nav-link" href="meme_of_the_day">
@@ -92,7 +92,7 @@
               </div>
               <div class="quote_btn-container">
                 {% if signedin%}
-                  <a href="">
+                  <a href="profile">
                     <i class="fa fa-user" aria-hidden="true"></i>
                     <span>
                       {{username}}
@@ -225,45 +225,34 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <form>
+          <form action="/?f=f1" method="post">
             <h4>
-              BOOK <span>cleaning session</span>
+              BOOK <span>a new event</span>
             </h4>
             <div class="form-row ">
               <div class="form-group col-lg-4">
                 <label for="inputPatientName"> volunteer name </label>
-                <input type="text" class="form-control" id="inputPatientName" placeholder="">
+                <input name="name" type="text" class="form-control" id="inputPatientName" placeholder="">
               </div>
               <div class="form-group col-lg-4">
-                <label for="inputDoctorName">country</label>
-                <select name="" class="form-control wide" id="inputDoctorName">
-                  <option value="Normal distribution ">israel </option>
-                  <option value="Normal distribution ">jordan </option>
-                  <option value="Normal distribution ">egypt  </option>
-                </select>
-              </div>
-              <div class="form-group col-lg-4">
-                <label for="inputDepartmentName">how many volunteers?</label>
-                <select name="" class="form-control wide" id="inputDepartmentName">
-                  <option value="Normal distribution ">1-5</option>
-                  <option value="Normal distribution ">1-10  </option>
-                  <option value="Normal distribution ">1-20+ </option>
+                <label for="inputDoctorName">region</label>
+                <select name="region" class="form-control wide" id="inputDoctorName">
+                  <option value="Normal distribution ">North </option>
+                  <option value="Normal distribution ">Center </option>
+                  <option value="Normal distribution ">South  </option>
+                  <option value="Normal distribution ">Jerusalem  </option>
                 </select>
               </div>
             </div>
             <div class="form-row ">
               <div class="form-group col-lg-4">
                 <label for="inputPhone">Phone Number</label>
-                <input type="number" class="form-control" id="inputPhone" placeholder="XXXXXXXXXX">
-              </div>
-              <div class="form-group col-lg-4">
-                <label for="inputSymptoms">location</label>
-                <input type="text" class="form-control" id="inputSymptoms" placeholder="">
+                <input name="number" type="number" class="form-control" id="inputPhone" placeholder="XXXXXXXXXX">
               </div>
               <div class="form-group col-lg-4">
                 <label for="inputDate">Choose Date </label>
                 <div class="input-group date" id="inputDate" data-date-format="mm-dd-yyyy">
-                  <input type="text" class="form-control" readonly>
+                  <input name="date" type="text" class="form-control" readonly>
                   <span class="input-group-addon date_icon">
                     <i class="fa fa-calendar" aria-hidden="true"></i>
                   </span>
@@ -301,10 +290,8 @@
               </h2>
             </div>
             <p>
-            To mobilize communities around the world to make intersectional behavioral changes and fight for the creation of a healthier home for everyone on this planet--beginning at the local level. We view the resolution of the climate emergency stemming from individual action that enables local heroes to lead collective change. 
-            <a href="">
-              Read More
-            </a>
+              To mobilize communities around the world to make intersectional behavioral changes and fight for the creation of a healthier home for everyone on this planet--beginning at the local level. We view the resolution of the climate emergency stemming from individual action that enables local heroes to lead collective change. 
+            </p>
           </div>
         </div>
       </div>
@@ -313,285 +300,8 @@
 
   <!-- end about section -->
 
-
-  <!-- jobs section -->
-
-  <section class="jobs_section layout_padding">
-    <div class="side_img">
-      <img src="../static/images/jobs-side-img.jpg" alt="">
-    </div>
-    <div class="container">
-      <div class="heading_container heading_center">
-        <h2>
-          Hospital <span>jobs</span>
-        </h2>
-      </div>
-      <div class="row">
-        <div class="col-md-6 col-lg-3">
-          <div class="box ">
-            <div class="img-box">
-              <img src="../static/images/t1.png" alt="">
-            </div>
-            <div class="detail-box">
-              <h4>
-                needle worrior 
-              </h4>
-              <p>
-                pick up the needles that might cause diseases
-              </p>
-              <a href="">
-                Read More
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div class="box ">
-            <div class="img-box">
-              <img src="../static/images/t2.png" alt="">
-            </div>
-            <div class="detail-box">
-              <h4>
-                animal Care
-              </h4>
-              <p>
-                help any hurt animals found while cleaning 
-              </p>
-              <a href="">
-                Read More
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div class="box ">
-            <div class="img-box">
-              <img src="../static/images/t3.png" alt="">
-            </div>
-            <div class="detail-box">
-              <h4>
-                photographer 
-              </h4>
-              <p>
-                takes photos of all the trash and volunteers
-              </p>
-              <a href="">
-                Read More
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div class="box ">
-            <div class="img-box">
-              <img src="../static/images/t4.png" alt="">
-            </div>
-            <div class="detail-box">
-              <h4>
-                Parental supervision 
-              </h4>
-              <p>
-                supervises children coming to volunteer 
-              </p>
-              <a href="">
-                Read More
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- end jobs section -->
-
-  <!-- team section -->
-
-  <section class="team_section layout_padding">
-    <div class="container">
-      <div class="heading_container heading_center">
-        <h2>
-          Our <span>Doctors</span>
-        </h2>
-      </div>
-      <div class="carousel-wrap ">
-        <div class="owl-carousel team_carousel">
-          <div class="item">
-            <div class="box">
-              <div class="img-box">
-                <img src="../static/images/team1.jpg" alt="" />
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Hennry
-                </h5>
-                <h6>
-                  MBBS
-                </h6>
-                <div class="social_box">
-                  <a href="">
-                    <i class="fa fa-facebook" aria-hidden="true"></i>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-linkedin" aria-hidden="true"></i>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-instagram" aria-hidden="true"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="box">
-              <div class="img-box">
-                <img src="../static/images/team2.jpg" alt="" />
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Jenni
-                </h5>
-                <h6>
-                  MBBS
-                </h6>
-                <div class="social_box">
-                  <a href="">
-                    <i class="fa fa-facebook" aria-hidden="true"></i>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-linkedin" aria-hidden="true"></i>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-instagram" aria-hidden="true"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="box">
-              <div class="img-box">
-                <img src="../static/images/team3.jpg" alt="" />
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Morco
-                </h5>
-                <h6>
-                  MBBS
-                </h6>
-                <div class="social_box">
-                  <a href="">
-                    <i class="fa fa-facebook" aria-hidden="true"></i>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-linkedin" aria-hidden="true"></i>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-instagram" aria-hidden="true"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- end team section -->
-
-
-  <!-- client section -->
-  <section class="client_section layout_padding">
-    <div class="container">
-      <div class="heading_container">
-        <h2>
-          <span>Testimonial</span>
-        </h2>
-      </div>
-    </div>
-    <div class="container px-0">
-      <div id="customCarousel2" class="carousel  carousel-fade" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="box">
-              <div class="client_info">
-                <div class="client_name">
-                  <h5>
-                    Morijorch
-                  </h5>
-                  <h6>
-                    Default model text
-                  </h6>
-                </div>
-                <i class="fa fa-quote-left" aria-hidden="true"></i>
-              </div>
-              <p>
-                wow great inntiative 
-              </p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="box">
-              <div class="client_info">
-                <div class="client_name">
-                  <h5>
-                    Rochak
-                  </h5>
-                  <h6>
-                    Default model text
-                  </h6>
-                </div>
-                <i class="fa fa-quote-left" aria-hidden="true"></i>
-              </div>
-              <p>
-                my street is clean now from volunteers helping me!
-              </p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="box">
-              <div class="client_info">
-                <div class="client_name">
-                  <h5>
-                    Brad Johns
-                  </h5>
-                  <h6>
-                    Default model text
-                  </h6>
-                </div>
-                <i class="fa fa-quote-left" aria-hidden="true"></i>
-              </div>
-              <p>
-                went to clean with these people awesome expirence 
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="carousel_btn-box">
-          <a class="carousel-control-prev" href="#customCarousel2" role="button" data-slide="prev">
-            <i class="fa fa-angle-left" aria-hidden="true"></i>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#customCarousel2" role="button" data-slide="next">
-            <i class="fa fa-angle-right" aria-hidden="true"></i>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- end client section -->
+  <br>
+  <br>
 
   <!-- contact section -->
   <section class="contact_section layout_padding-bottom">
@@ -604,30 +314,22 @@
       <div class="row">
         <div class="col-md-7">
           <div class="form_container">
-            <form action="">
+            <form action="/?f=f2" method="post">
               <div>
-                <input type="text" placeholder="Full Name" />
+                <input type="text" name="name" placeholder="Full Name" />
               </div>
               <div>
-                <input type="email" placeholder="Email" />
+                <input type="text" name="phone number" placeholder="Phone Number" />
               </div>
               <div>
-                <input type="text" placeholder="Phone Number" />
-              </div>
-              <div>
-                <input type="text" class="message-box" placeholder="Message" />
+                <input type="text" name="msg" class="message-box" placeholder="Message" />
               </div>
               <div class="btn_box">
-                <button>
+                <button type="submit">
                   SEND
                 </button>
               </div>
             </form>
-          </div>
-        </div>
-        <div class="col-md-5">
-          <div class="img-box">
-            <img src="../static/images/contact-img.jpg" alt="">
           </div>
         </div>
       </div>
@@ -659,17 +361,17 @@
                 <a href="about">
                   About
                 </a>
-                <a href="jobs">
-                  jobs
+                <a href="ranks">
+                  ranks
                 </a>
-                <a href="doctor">
-                  Doctors
+                <a href="meme_of_the_day">
+                  meme of the day
                 </a>
-                <a href="testimonial">
-                  Testimonial
+                <a href="calander">
+                  calander
                 </a>
                 <a href="contact">
-                  Contact us
+                  events
                 </a>
               </div>
             </div>

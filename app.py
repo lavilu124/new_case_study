@@ -51,15 +51,32 @@ def get_user_data(data):
     return "x"
 
 def get_calander():
-    if db.child("calander_events").child(get_user_data("zone")).get().val() is not None:
-        return json.dumps(list(db.child("calander_events").child(get_user_data("zone")).get().val().values()))
+    zone = get_user_data("zone")
+    if db.child("calander_events").child(zone).get().val() is not None:
+        return json.dumps(list(db.child("calander_events").child(zone).get().val().values()))
     
     return []
 
 # for the home page
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template("index.html",
+    if request.form == "POST" and is_loged_in():
+        if request.args.get("f") == "f2":
+            db.child("contact info").push({
+            "name": request.form["name"],
+            "email": get_user_data("email"),
+            "msg": request.form["msg"]
+            })
+        else:
+          db.child("event request").push({
+            "name": request.form["name"],
+            "email": get_user_data("email"),
+            "region": request.form["region"],
+            "number": request.form["number"],
+            "date": request.form["date"]
+            })  
+    else:
+        return render_template("index.html",
                            signedin=is_loged_in(),
                            username=get_user_data("username"))
 
@@ -80,10 +97,10 @@ def contact():
                            username=get_user_data("username"))
 
 #page for jobs
-@app.route("/jobs")
+@app.route("/ranks")
 def jobs():
     #render the page with parameters
-    return render_template("jobs.html",
+    return render_template("ranks.html",
                            signedin=is_loged_in(),
                            username=get_user_data("username"))
 
