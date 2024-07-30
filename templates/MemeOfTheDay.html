@@ -14,9 +14,9 @@
 
   <title>Tuesdays for Trash</title>
 
-<head>
-  <link rel="shortcut icon" type="image/x-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAQlBMVEVHcEyd0ZKd0ZKd0ZKd0ZKd0ZKd0ZKd0ZKd0ZKd0ZKd0ZKh1pVMgVg5b0yUyYxfk2UARSwLTTJonGsfWzyGu4J0qXRJWq/6AAAAC3RSTlMAT5bP9P8cp5DgKp0v+A4AAAEUSURBVHgBhZMFAsMgDEXrhuWX7v5XXWAkMH9bW+ThoWvoh3Ga52kc+u4Dyzo3rMtr/Ta/sD033+c39qaTY5o/MB3aXutNRg3pY9c66xir1t7MzwfGEhiyKe11pktuH4hBIaVD7iMNsmbhRIzgH78f/zMLKws6v2dKMe9vSV3xiasU990gAgEEgUQYurEK0QLOATZWYexkkzzBGdDtRjAO5GWzurkK0cQk8KcK839hkhQBIgA06xCjJAHMLgkuJwujLjM18zYJ1qfOdJm9CLEVoggcno1whSSEqxHksFhwLJxJOFlwLMhhLSpAj1KFpQa0sSRnwQlr2tAuIW2dYktgPwetadCg/R/2/y/O/6v3//L+vv53ASIebLADWnAAAAAASUVORK5CYII=" />
-</head>
+    <head>
+    <link rel="shortcut icon" type="image/x-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAQlBMVEVHcEyd0ZKd0ZKd0ZKd0ZKd0ZKd0ZKd0ZKd0ZKd0ZKd0ZKh1pVMgVg5b0yUyYxfk2UARSwLTTJonGsfWzyGu4J0qXRJWq/6AAAAC3RSTlMAT5bP9P8cp5DgKp0v+A4AAAEUSURBVHgBhZMFAsMgDEXrhuWX7v5XXWAkMH9bW+ThoWvoh3Ga52kc+u4Dyzo3rMtr/Ta/sD033+c39qaTY5o/MB3aXutNRg3pY9c66xir1t7MzwfGEhiyKe11pktuH4hBIaVD7iMNsmbhRIzgH78f/zMLKws6v2dKMe9vSV3xiasU990gAgEEgUQYurEK0QLOATZWYexkkzzBGdDtRjAO5GWzurkK0cQk8KcK839hkhQBIgA06xCjJAHMLgkuJwujLjM18zYJ1qfOdJm9CLEVoggcno1whSSEqxHksFhwLJxJOFlwLMhhLSpAj1KFpQa0sSRnwQlr2tAuIW2dYktgPwetadCg/R/2/y/O/6v3//L+vv53ASIebLADWnAAAAAASUVORK5CYII=" />
+    </head>
 
 
   <!-- bootstrap core css -->
@@ -95,10 +95,6 @@
                     </span>
                   </a>
                 {% else %}
-                <div class="heading_container heading_center">
-                  <h2>
-                      this is the rofile page to user profile pls sign in/up
-                  </h2>
                   <a href="/signin">
                     <i class="fa fa-user" aria-hidden="true"></i>
                     <span>
@@ -111,7 +107,6 @@
                       Sign Up
                     </span>
                   </a>
-                </div>
                 {% endif %}
                 
               </div>
@@ -134,6 +129,13 @@
           <h4>Welcome! <span>{{username}}</span></h4>
         </div>
       {% else %}
+      <div class="heading_container heading_center">
+        <h2>
+            this is the rofile page to user profile pls sign in/up
+        </h2>
+        <a href="/signin"> go sign in</a>
+        <a href="/signup"> go sign up</a>
+      </div>
       {% endif %}      
     </div>
   </section>
