@@ -33,6 +33,10 @@ def create_user(email, password, username, zone):
         "username": username,
         "zone" : zone
     })
+
+#check if the user is loged in
+def is_loged_in():
+    return "user" in login_session and login_session["user"] is not None
     
 #logout a user
 def logout():
@@ -41,9 +45,8 @@ def logout():
   
 def get_user_data(data):
     #check if a user exist and if it does retrun the user name
-    user = db.child("users").child(login_session["user"]["localId"]).get().val()
-    if user is not None:
-        return user[data]
+    if is_loged_in():
+        return db.child("users").child(login_session["user"]["localId"]).get().val()[data]
     
     return "x"
 
@@ -57,7 +60,7 @@ def get_calander():
 @app.route("/")
 def home():
     return render_template("index.html",
-                           signedin=db.child("users").child(login_session["user"]["localId"]).get().val() is not None,
+                           signedin=is_loged_in(),
                            username=get_user_data("username"))
 
 #about page
@@ -65,7 +68,7 @@ def home():
 def about():
     #render the page with parameters
     return render_template("about.html",
-                           signedin=db.child("users").child(login_session["user"]["localId"]).get().val() is not None,
+                           signedin=is_loged_in(),
                            username=get_user_data("username"))
 
 #page for content
@@ -73,7 +76,7 @@ def about():
 def contact():
     #render the page with parameters
     return render_template("events.html",
-                           signedin=db.child("users").child(login_session["user"]["localId"]).get().val() is not None,
+                           signedin=is_loged_in(),
                            username=get_user_data("username"))
 
 #page for jobs
@@ -81,20 +84,25 @@ def contact():
 def jobs():
     #render the page with parameters
     return render_template("jobs.html",
-                           signedin=db.child("users").child(login_session["user"]["localId"]).get().val() is not None,
+                           signedin=is_loged_in(),
                            username=get_user_data("username"))
 
 #page for profile
-@app.route("/profile")
+@app.route("/profile", methods=['GET', 'POST'])
 def profile():
+    if request.method == "POST":
+        logout()
+        return redirect(url_for("signin"))
     #render the page with parameters
     return render_template("profile.html",
-                           signedin=db.child("users").child(login_session["user"]["localId"]).get().val() is not None,
+                           signedin=is_loged_in(),
                            username=get_user_data("username"))
 
 @app.route("/meme_of_the_day")
 def meme_of_the_day():
-    return render_template("MemeOfTheDay.html")
+    return render_template("MemeOfTheDay.html",
+                           signedin=is_loged_in(),
+                           username=get_user_data("username"))
 
 #calander page
 @app.route("/calander", methods=['GET', 'POST'])
@@ -108,7 +116,7 @@ def calander():
     
     #render the page
     return render_template("calander.html", events=get_calander(),
-                           signedin=db.child("users").child(login_session["user"]["localId"]).get().val() is not None,
+                           signedin=is_loged_in(),
                            username=get_user_data("username"))
     
     
