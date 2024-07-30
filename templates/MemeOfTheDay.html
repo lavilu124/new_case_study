@@ -76,9 +76,9 @@
                     <a class="nav-link" href="jobs">jobs</a>
                   </li>
                   <li class="nav-item active">
-                    <a href="meme_of_the_day">
-                  meme of the day
-                </a>
+                    <a class="nav-link" href="meme_of_the_day">
+                      meme of the day
+                    </a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="calander">Calander</a>
@@ -110,7 +110,6 @@
                     </span>
                   </a>
                 {% endif %}
-                
               </div>
             </div>
           </nav>
@@ -124,19 +123,10 @@
   <section class="team_section layout_padding">
     <div class="container">
       {% if signedin%}
-        <div class="heading_container heading_center">
-          <h2>
-            Your profile:
-          </h2>
-          <h4>Welcome! <span>{{username}}</span></h4>
-        </div>
+      <div class="heading_container heading_center">
+      </div>
       {% else %}
       <div class="heading_container heading_center">
-        <h2>
-            this is the rofile page to user profile pls sign in/up
-        </h2>
-        <a href="/signin"> go sign in</a>
-        <a href="/signup"> go sign up</a>
       </div>
       {% endif %}      
     </div>

@@ -154,73 +154,78 @@
 
         <h1>Events near you Calendar</h1>
         <p>pick events and sign up to them</p>
-        <div id='calendar'></div>
-        <p id="events" hidden> {{ events | safe }} </p>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                var calendarEl = document.getElementById('calendar');
-                var get_events = JSON.parse(document.getElementById("events").innerHTML);
-                var calendar = new FullCalendar.Calendar(calendarEl, {
-                    initialView: 'dayGridMonth',
-                    locale: 'en',
-                    headerToolbar: {
-                        left: 'prev,next today',
-                        center: 'title',
-                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                    },
-                    selectable: true,
-                    editable: true,
-                    dateClick: function(info) {
-                        var dateStr = prompt('Enter a title for your event:');
-                        if (dateStr) {
-                            var cur_event = {
-                                title: dateStr,
-                                start: info.dateStr,
-                                allDay: true
-                            };
-                            calendar.addEvent(cur_event);
-
-                            fetch('/calander', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify({
+        {% if signedin%}
+            <div id='calendar'></div>
+            <p id="events" hidden> {{ events | safe }} </p>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var calendarEl = document.getElementById('calendar');
+                    var get_events = JSON.parse(document.getElementById("events").innerHTML);
+                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                        initialView: 'dayGridMonth',
+                        locale: 'en',
+                        headerToolbar: {
+                            left: 'prev,next today',
+                            center: 'title',
+                            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                        },
+                        selectable: true,
+                        editable: true,
+                        dateClick: function(info) {
+                            var dateStr = prompt('Enter a title for your event:');
+                            if (dateStr) {
+                                var cur_event = {
                                     title: dateStr,
                                     start: info.dateStr,
                                     allDay: true
-                                })
-                            })
-                        }
-                    },
-                    select: function(info) {
-                        var title = prompt('Enter a title for your event:');
-                        if (title) {
-                            var cur_event = {
-                                title: title,
-                                start: info.startStr,
-                                end: info.endStr
-                            };
-                            calendar.addEvent(cur_event);
+                                };
+                                calendar.addEvent(cur_event);
 
-                            fetch('/calander', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify(cur_event)
-                            })
-                        }
-                    },
-                    events: (document.getElementById("events").innerHTML != "") ? get_events.map(event => ({
-                        title: event.title,
-                        start: event.start,
-                        end: event.end || null
-                    })) : []
+                                fetch('/calander', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        title: dateStr,
+                                        start: info.dateStr,
+                                        allDay: true
+                                    })
+                                })
+                            }
+                        },
+                        select: function(info) {
+                            var title = prompt('Enter a title for your event:');
+                            if (title) {
+                                var cur_event = {
+                                    title: title,
+                                    start: info.startStr,
+                                    end: info.endStr
+                                };
+                                calendar.addEvent(cur_event);
+
+                                fetch('/calander', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify(cur_event)
+                                })
+                            }
+                        },
+                        events: (document.getElementById("events").innerHTML != "") ? get_events.map(event => ({
+                            title: event.title,
+                            start: event.start,
+                            end: event.end || null
+                        })) : []
+                    });
+                    calendar.render();
                 });
-                calendar.render();
-            });
-        </script>
-        </script>
+            </script>
+        {% else %}
+            <div class="heading_container heading_center">
+                <h2>pls go sign in to use the calander</h2>
+            </div>
+        {% endif %}
     </body>
 </html>
